@@ -3,13 +3,15 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var mysql = require("mysql");
 var Bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
+dotenv.config();
 
 var connection = mysql.createConnection({
-    host: 'lab5.c0pc8cg1iy7y.us-east-1.rds.amazonaws.com',
-    user: 'root',
-    password: 'password',
-    database: 'Feedback',
-    port: 3306,
+    host: process.env.DB_ENDPOINT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
 });
 connection.connect(function (err) {
     if (err) {
